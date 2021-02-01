@@ -15,7 +15,7 @@ const Modal = {
     }
 }
 
-const transacrions = [
+const transactions = [
     {
         id: 1,
         description: "Luz",
@@ -43,16 +43,30 @@ const Transacrion = {
 }
 
 const DOM = {
-    innerHTMLTransaction() {
+    transactionsContainer: document.querySelector("#data-table tbody"),
+    addTransactions(transaction) {
+        const tr = document.createElement('tr')
+        tr.innerHTML = DOM.innerHTMLTransaction(transaction)
+        DOM.transactionsContainer.appendChild(tr)
+    },
+    innerHTMLTransaction(transaction) {
+        const CSSClass = transaction.amount > 0 ? "income" : "expense"
         const html = `
-            <tr>
-                <td class="description">Luz</td>
-                <td class="expense">-R$500,00</td>
-                <td class="date">18/01/2021</td>
-                <td>
-                <img src="./assets/minus.svg" alt="Remover transação">
-                </td>
-            </tr>
+            <td class="description">${transaction.description}</td>
+            <td class="${CSSClass}">${transaction.amount}</td>
+            <td class="date">${transaction.date}</td>
+            <td>
+            <img src="./assets/minus.svg" alt="Remover transação">
+            </td>
         `
+        return html
     },
 }
+
+const Utils = {
+    formatCurrency(value) {
+        const signal = Number(value) < 0 ? "-" : ""
+    }
+}
+
+transactions.forEach((transaction) => DOM.addTransactions(transaction))
