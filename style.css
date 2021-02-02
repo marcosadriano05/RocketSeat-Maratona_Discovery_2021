@@ -192,6 +192,10 @@ table tbody tr:hover {
   opacity: 1;
 }
 
+table tbody tr img:hover {
+  cursor: pointer;
+}
+
 table td {
   background: white;
   padding: 1rem 2rem;
