@@ -37,9 +37,18 @@ const transactions = [
 ]
 
 const Transaction = {
+    all: transactions,
+    add(transaction) {
+        Transaction.all.push(transaction)
+        App.reload()
+    },
+    remove(index) {
+        Transaction.all.splice(index, 1)
+        App.reload()
+    },
     incomes() {
         let income = 0
-        transactions.forEach((transaction) => {
+        Transaction.all.forEach((transaction) => {
             if(transaction.amount > 0) {
                 income += transaction.amount
             }
@@ -48,7 +57,7 @@ const Transaction = {
     },
     expenses() {
         let expense = 0
-        transactions.forEach((transaction) => {
+        Transaction.all.forEach((transaction) => {
             if(transaction.amount < 0) {
                 expense += transaction.amount
             }
@@ -56,7 +65,7 @@ const Transaction = {
         return expense
     },
     total() {
-        return Transaction.incomes() - Transaction.expenses()
+        return Transaction.incomes() + Transaction.expenses()
     }
 }
 
@@ -87,6 +96,9 @@ const DOM = {
         document.getElementById("incomeBalance").innerHTML = Utils.formatCurrency(incomes)
         document.getElementById("expenseBalance").innerHTML = Utils.formatCurrency(expenses)
         document.getElementById("totalBalance").innerHTML = Utils.formatCurrency(total)
+    },
+    clearTransactions() {
+        DOM.transactionsContainer.innerHTML = ""
     }
 }
 
@@ -104,5 +116,22 @@ const Utils = {
     }
 }
 
-transactions.forEach((transaction) => DOM.addTransactions(transaction))
-DOM.updateBalance()
+const App = {
+    init() {
+        Transaction.all.forEach((transaction) => DOM.addTransactions(transaction))
+        DOM.updateBalance()
+    },
+    reload() {
+        DOM.clearTransactions()
+        App.init()
+    }
+}
+
+App.init()
+
+Transaction.add({
+    id: 10,
+    description: "abc",
+    amount: 8000,
+    date: "12/03/2020"
+})
