@@ -15,29 +15,27 @@ const Modal = {
     }
 }
 
-const transactions = [
-    {
-        id: 1,
-        description: "Luz",
-        amount: -50000,
-        date: "18/01/2020"
-    },
-    {
-        id: 2,
-        description: "Website",
-        amount: 500000,
-        date: "18/01/2020"
-    },
-    {
-        id: 3,
-        description: "Aluguel",
-        amount: -150000,
-        date: "18/01/2020"
-    },
-]
-
 const Transaction = {
-    all: transactions,
+    all: [
+            {
+                id: 1,
+                description: "Luz",
+                amount: -50000,
+                date: "18/01/2020"
+            },
+            {
+                id: 2,
+                description: "Website",
+                amount: 500000,
+                date: "18/01/2020"
+            },
+            {
+                id: 3,
+                description: "Aluguel",
+                amount: -150000,
+                date: "18/01/2020"
+            },
+        ],
     add(transaction) {
         Transaction.all.push(transaction)
         App.reload()
@@ -116,6 +114,34 @@ const Utils = {
     }
 }
 
+const Form = {
+    description: document.querySelector("input#description"),
+    amount: document.querySelector("input#amount"),
+    date: document.querySelector("input#date"),
+    getValue() {
+        return {
+            description: Form.description.value,
+            amount: Form.amount.value,
+            date: Form.date.value
+        }
+    },
+    validateForm() {
+        const { description, amount, date} = Form.getValue()
+        if(description.trim() === "" || amount.trim() === "" || date.trim() === "") {
+            throw new Error("Por favor, preencha todos os campos.")
+        }
+    },
+    submit(event) {
+        event.preventDefault()
+        try {
+            Form.validateForm()
+            Modal.close()
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+}
+
 const App = {
     init() {
         Transaction.all.forEach((transaction) => DOM.addTransactions(transaction))
@@ -128,10 +154,3 @@ const App = {
 }
 
 App.init()
-
-Transaction.add({
-    id: 10,
-    description: "abc",
-    amount: 8000,
-    date: "12/03/2020"
-})
