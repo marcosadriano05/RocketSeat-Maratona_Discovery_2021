@@ -18,19 +18,16 @@ const Modal = {
 const Transaction = {
     all: [
             {
-                id: 1,
                 description: "Luz",
                 amount: -50000,
                 date: "18/01/2020"
             },
             {
-                id: 2,
                 description: "Website",
                 amount: 500000,
                 date: "18/01/2020"
             },
             {
-                id: 3,
                 description: "Aluguel",
                 amount: -150000,
                 date: "18/01/2020"
@@ -111,6 +108,14 @@ const Utils = {
         })
 
         return signal + value
+    },
+    formatAmount(value) {
+        value = Number(value.replace(/\,\./g, "")) * 100
+        return value
+    },
+    formatDate(date) {
+        const splittedDate = date.split("-")
+        return `${splittedDate[2]}/${splittedDate[1]}/${splittedDate[0]}`
     }
 }
 
@@ -131,10 +136,28 @@ const Form = {
             throw new Error("Por favor, preencha todos os campos.")
         }
     },
+    formatFields() {
+        let { description, amount, date} = Form.getValue()
+        amount = Utils.formatAmount(amount)
+        date = Utils.formatDate(date)
+        return {
+            description,
+            amount,
+            date
+        }
+    },
+    clearFields() {
+        Form.description.value = ""
+        Form.amount.value = ""
+        Form.date.value = ""
+    },
     submit(event) {
         event.preventDefault()
         try {
             Form.validateForm()
+            const transaction = Form.formatFields()
+            Transaction.add(transaction)
+            Form.clearFields()
             Modal.close()
         } catch (error) {
             alert(error.message)
