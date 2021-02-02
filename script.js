@@ -36,10 +36,28 @@ const transactions = [
     },
 ]
 
-const Transacrion = {
-    incomes() {},
-    expenses() {},
-    total() {}
+const Transaction = {
+    incomes() {
+        let income = 0
+        transactions.forEach((transaction) => {
+            if(transaction.amount > 0) {
+                income += transaction.amount
+            }
+        })
+        return income
+    },
+    expenses() {
+        let expense = 0
+        transactions.forEach((transaction) => {
+            if(transaction.amount < 0) {
+                expense += transaction.amount
+            }
+        })
+        return expense
+    },
+    total() {
+        return Transaction.incomes() - Transaction.expenses()
+    }
 }
 
 const DOM = {
@@ -62,6 +80,14 @@ const DOM = {
         `
         return html
     },
+    updateBalance() {
+        const incomes = Transaction.incomes()
+        const expenses = Transaction.expenses()
+        const total = Transaction.total()
+        document.getElementById("incomeBalance").innerHTML = Utils.formatCurrency(incomes)
+        document.getElementById("expenseBalance").innerHTML = Utils.formatCurrency(expenses)
+        document.getElementById("totalBalance").innerHTML = Utils.formatCurrency(total)
+    }
 }
 
 const Utils = {
@@ -79,3 +105,4 @@ const Utils = {
 }
 
 transactions.forEach((transaction) => DOM.addTransactions(transaction))
+DOM.updateBalance()
