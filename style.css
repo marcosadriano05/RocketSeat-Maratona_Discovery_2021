@@ -1,6 +1,7 @@
 /* Global =============================== */
 :root {
   --dark-blue: #363f5f;
+  --light-blue: rgb(37, 116, 219);
   --green: #49AA26;
   --light-green: #3dd705;
   --red: #e92929;
@@ -154,15 +155,52 @@ header {
 
 /* Options =============================== */
 #options {
+  padding-top: 0.5rem;
   padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 0.3rem;
   display: flex;
   align-items: center;
-  justify-content: left;
+  justify-content: space-between;
+  width: 250px;
 }
 
-#options label {
-  padding-left: 0.3rem;
-  padding-right: 1rem;
+#options .options-label {
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: var(--dark-blue);
+  color: white;
+  transition: 300ms;
+}
+
+#options .options-label:hover {
+  background-color: var(--light-blue);
+}
+
+#options .options-label-select {
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: --light-blue;
+  color: white;
+  transition: 300ms;
+}
+
+#options .options-label label {
+  cursor: pointer;
+}
+
+#options .options-label input {
+  display: none;
 }
 
 /* Table =============================== */
@@ -310,5 +348,9 @@ footer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
+  }
+
+  #options {
+    width: 250px;
   }
 }

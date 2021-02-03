@@ -45,12 +45,18 @@
         <h2 class="sr-only">Transações</h2>
         <a href="#" onclick="Modal.open()" class="button new">+ Nova Transação</a>
         <div id="options">
-          <input id="selectAll" name="selectOption" type="radio" value="all" onchange="DOM.optionAll()" checked="checked" />
-          <label for="selectAll">Todas</label>
-          <input id="selectIncomes" name="selectOption" type="radio" value="incomes" onchange="DOM.optionIncome()" />
-          <label for="selectIncomes">Entradas</label>
-          <input id="selectExpenses" name="selectOption" value="expenses" type="radio" onchange="DOM.optionExpense()" />
-          <label for="selectExpenses">Saídas</label>
+          <div class="options-label">
+            <input id="selectAll" name="selectOption" type="radio" value="all" onchange="DOM.optionAll()" checked="checked" />
+            <label for="selectAll">Todas</label>
+          </div>
+          <div class="options-label">
+            <input id="selectIncomes" name="selectOption" type="radio" value="incomes" onchange="DOM.optionIncome()" />
+            <label for="selectIncomes">Entradas</label>
+          </div>
+          <div class="options-label">
+            <input id="selectExpenses" name="selectOption" type="radio" value="expenses" onchange="DOM.optionExpense()" />
+            <label for="selectExpenses">Saídas</label>
+          </div>
         </div>
         <table id="data-table">
           <thead>

@@ -73,9 +73,9 @@ const Transaction = {
 
 const DOM = {
     optionsContainer: {
-        optionAll: document.querySelector("#selectAll"),
-        optionIncome: document.querySelector("#selectIncomes"),
-        optionExpense: document.querySelector("#selectExpenses"),
+        all: document.querySelector("#selectAll"),
+        income: document.querySelector("#selectIncomes"),
+        expense: document.querySelector("#selectExpenses")
     },
     transactionsContainer: document.querySelector("#data-table tbody"),
     addTransactions(transaction, index) {
@@ -110,18 +110,10 @@ const DOM = {
     },
     //Opções
     optionAll() {
-        const { optionAll, optionIncome, optionExpense } = DOM.optionsContainer
-        if(optionAll) {
-            console.log(optionAll.value)
-        }
         DOM.clearTransactions()
         Transaction.all.forEach((transaction, index) => DOM.addTransactions(transaction, index))
     },
     optionIncome() {
-        const { optionAll, optionIncome, optionExpense } = DOM.optionsContainer
-        if(optionIncome) {
-            console.log(optionIncome.value)
-        }
         DOM.clearTransactions()
         Transaction.all.forEach((transaction, index) => {
             if(transaction.amount > 0) {
@@ -130,16 +122,18 @@ const DOM = {
         })
     },
     optionExpense() {
-        const { optionAll, optionIncome, optionExpense } = DOM.optionsContainer
-        if(optionExpense) {
-            console.log(optionExpense.value)
-        }
         DOM.clearTransactions()
         Transaction.all.forEach((transaction, index) => {
             if(transaction.amount < 0) {
                 DOM.addTransactions(transaction, index)
             }
         })
+    },
+    optionSelected(event) {
+        if(DOM.optionsContainer.all.value === event.target.value) {
+            DOM.optionsContainer.all.classList.remove(".options-label")
+            DOM.optionsContainer.all.classList.add(".options-label-select")
+        }
     }
 }
 
