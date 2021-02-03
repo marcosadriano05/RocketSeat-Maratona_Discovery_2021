@@ -44,6 +44,14 @@
       <section id="transaction">
         <h2 class="sr-only">Transações</h2>
         <a href="#" onclick="Modal.open()" class="button new">+ Nova Transação</a>
+        <div id="options">
+          <input id="selectAll" name="selectAll" type="checkbox" />
+          <label for="selectAll">Todas</label>
+          <input id="selectIncomes" name="selectIncomes" type="checkbox" />
+          <label for="selectIncomes">Entradas</label>
+          <input id="selectExpenses" name="selectExpenses" type="checkbox" />
+          <label for="selectExpenses">Saídas</label>
+        </div>
         <table id="data-table">
           <thead>
             <tr>

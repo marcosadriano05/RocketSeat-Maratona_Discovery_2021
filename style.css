@@ -152,6 +152,19 @@ header {
   color: white;
 }
 
+/* Options =============================== */
+#options {
+  padding-left: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+#options label {
+  padding-left: 0.3rem;
+  padding-right: 1rem;
+}
+
 /* Table =============================== */
 #transaction {
   display: block;
