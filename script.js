@@ -26,6 +26,20 @@ const Storage = {
 
 const Transaction = {
     all: Storage.get(),
+    /*
+    all: [
+        {
+            description: "Luz",
+            amount: -5000,
+            date: "21/02/2021"
+        },
+        {
+            description: "App",
+            amount: 500000,
+            date: "21/02/2021"
+        }
+    ],
+    */
     add(transaction) {
         Transaction.all.push(transaction)
         App.reload()
@@ -58,6 +72,11 @@ const Transaction = {
 }
 
 const DOM = {
+    optionsContainer: {
+        optionAll: document.querySelector("#selectAll"),
+        optionIncome: document.querySelector("#selectIncomes"),
+        optionExpense: document.querySelector("#selectExpenses"),
+    },
     transactionsContainer: document.querySelector("#data-table tbody"),
     addTransactions(transaction, index) {
         const tr = document.createElement('tr')
@@ -88,6 +107,39 @@ const DOM = {
     },
     clearTransactions() {
         DOM.transactionsContainer.innerHTML = ""
+    },
+    //Opções
+    optionAll() {
+        const { optionAll, optionIncome, optionExpense } = DOM.optionsContainer
+        if(optionAll) {
+            console.log(optionAll.value)
+        }
+        DOM.clearTransactions()
+        Transaction.all.forEach((transaction, index) => DOM.addTransactions(transaction, index))
+    },
+    optionIncome() {
+        const { optionAll, optionIncome, optionExpense } = DOM.optionsContainer
+        if(optionIncome) {
+            console.log(optionIncome.value)
+        }
+        DOM.clearTransactions()
+        Transaction.all.forEach((transaction, index) => {
+            if(transaction.amount > 0) {
+                DOM.addTransactions(transaction, index)
+            }
+        })
+    },
+    optionExpense() {
+        const { optionAll, optionIncome, optionExpense } = DOM.optionsContainer
+        if(optionExpense) {
+            console.log(optionExpense.value)
+        }
+        DOM.clearTransactions()
+        Transaction.all.forEach((transaction, index) => {
+            if(transaction.amount < 0) {
+                DOM.addTransactions(transaction, index)
+            }
+        })
     }
 }
 
