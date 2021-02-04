@@ -71,12 +71,29 @@ const Transaction = {
     }
 }
 
-const DOM = {
+const Options = {
     optionsContainer: {
         all: document.querySelector("#selectAll"),
         income: document.querySelector("#selectIncomes"),
         expense: document.querySelector("#selectExpenses")
     },
+    getValue() {
+        return {
+            all: Options.optionsContainer.all.value,
+            income: Options.optionsContainer.income.value,
+            expense: Options.optionsContainer.expense.value
+        }
+    },
+    select(value) {
+        Options.optionsContainer.all.addEventListener("click", (event) => {
+            document.querySelector(value).classList.add("select")
+            console.log(event.target.value)
+        })
+        
+    }
+}
+
+const DOM = {
     transactionsContainer: document.querySelector("#data-table tbody"),
     addTransactions(transaction, index) {
         const tr = document.createElement('tr')
@@ -128,12 +145,6 @@ const DOM = {
                 DOM.addTransactions(transaction, index)
             }
         })
-    },
-    optionSelected(event) {
-        if(DOM.optionsContainer.all.value === event.target.value) {
-            DOM.optionsContainer.all.classList.remove(".options-label")
-            DOM.optionsContainer.all.classList.add(".options-label-select")
-        }
     }
 }
 

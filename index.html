@@ -46,7 +46,7 @@
         <a href="#" onclick="Modal.open()" class="button new">+ Nova Transação</a>
         <div id="options">
           <div class="options-label">
-            <input id="selectAll" name="selectOption" type="radio" value="all" onchange="DOM.optionAll()" checked="checked" />
+            <input id="selectAll" name="selectOption" type="radio" value="all" onchange="DOM.optionAll()" onclick="Options.select('.options-label')" checked="checked" />
             <label for="selectAll">Todas</label>
           </div>
           <div class="options-label">

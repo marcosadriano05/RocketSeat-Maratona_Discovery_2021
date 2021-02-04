@@ -161,14 +161,14 @@ header {
   padding-bottom: 0.3rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 250px;
+  justify-content: left;
+  width: 100%;
 }
 
 #options .options-label {
   border: none;
   border-radius: 0.25rem;
-  padding: 0.5rem;
+  padding: 0.4rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -182,15 +182,15 @@ header {
   background-color: var(--light-blue);
 }
 
-#options .options-label-select {
+#options .options-label.select {
   border: none;
   border-radius: 0.25rem;
-  padding: 0.5rem;
+  padding: 0.4rem;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  background-color: --light-blue;
+  background-color: var(--light-blue);
   color: white;
   transition: 300ms;
 }
@@ -348,9 +348,5 @@ footer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
-  }
-
-  #options {
-    width: 250px;
   }
 }
