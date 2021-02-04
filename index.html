@@ -43,7 +43,7 @@
       </section>
       <section id="transaction">
         <h2 class="sr-only">Transações</h2>
-        <a href="#" onclick="Modal.open()" class="button new">+ Nova Transação</a>
+        <a href="#" onclick="Modal.open('.modal-overlay')" class="button new">+ Nova Transação</a>
         <div id="options">
           <div id="label-1" class="options-label">
             <input id="selectAll" name="selectOption" type="radio" value="all" onchange="DOM.optionAll()" checked="checked" />
@@ -91,8 +91,21 @@
               <input id="date" name="date" type="date" />
             </div>
             <div class="input-group actions">
-              <a href="#" onclick="Modal.close()" class="button cancel">Cancelar</a>
+              <a href="#" onclick="Modal.close('.modal-overlay')" class="button cancel">Cancelar</a>
               <button type="submit">Salvar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="modal-overlay-remove">
+      <div class="modal">
+        <div id="form-remove">
+          <h2>Deseja apagar essa transação?</h2>
+          <form onsubmit="RemoveForm.submit(event)">
+            <div class="input-group actions">
+              <a href="#" onclick="Modal.close('.modal-overlay-remove')" class="button cancel">Não</a>
+              <button type="submit">Sim</button>
             </div>
           </form>
         </div>

@@ -1,18 +1,19 @@
 const Modal = {
-    open(){
+    open(value){
         //Abrir modal adicionando a classe active ao modal
         document
-        .querySelector(".modal-overlay")
+        .querySelector(value)
         .classList
         .add("active")
     },
-    close(){
+    close(value){
         //Fechar modal removendo a classe active do modal
         document
-        .querySelector(".modal-overlay")
+        .querySelector(value)
         .classList
         .remove("active")
-    }
+    },
+
 }
 
 const Storage = {
@@ -110,6 +111,7 @@ const DOM = {
         DOM.transactionsContainer.appendChild(tr)
     },
     innerHTMLTransaction(transaction, index) {
+        const description = transaction.description
         const CSSClass = transaction.amount > 0 ? "income" : "expense"
         const amount = Utils.formatCurrency(transaction.amount)
         const html = `
@@ -117,7 +119,7 @@ const DOM = {
             <td class="${CSSClass}">${amount}</td>
             <td class="date">${transaction.date}</td>
             <td>
-            <img onclick="Transaction.remove(${index})" src="./assets/minus.svg" alt="Remover transação">
+            <img onclick="Modal.open('.modal-overlay-remove'), RemoveForm.setTransaction('${description}',${index})" src="./assets/minus.svg" alt="Remover transação">
             </td>
         `
         return html
@@ -220,10 +222,28 @@ const Form = {
             const transaction = Form.formatFields()
             Transaction.add(transaction)
             Form.clearFields()
-            Modal.close()
+            Modal.close(".modal-overlay")
         } catch (error) {
             alert(error.message)
         }
+    }
+}
+
+const RemoveForm = {
+    transaction: {
+        description: "",
+        index: 0
+    },
+    setTransaction(description, index) {
+        RemoveForm.transaction.description = description
+        RemoveForm.transaction.index = index
+        document.querySelector("#form-remove h2")
+        .innerHTML = `Deseja apagar a transação: ${description}?`
+    },
+    submit(event) {
+        event.preventDefault()
+        Transaction.remove(RemoveForm.transaction.index)
+        Modal.close(".modal-overlay-remove")
     }
 }
 
