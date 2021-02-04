@@ -159,9 +159,9 @@ header {
   padding-left: 1rem;
   padding-right: 1rem;
   padding-bottom: 0.3rem;
-  display: flex;
-  align-items: center;
-  justify-content: left;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
   width: 100%;
 }
 
@@ -196,6 +196,9 @@ header {
 }
 
 #options .options-label label {
+  display: flex;
+  justify-content: center;
+  width: 100%;
   cursor: pointer;
 }
 
