@@ -159,16 +159,16 @@ header {
   padding-left: 1rem;
   padding-right: 1rem;
   padding-bottom: 0.3rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 250px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  width: 100%;
 }
 
 #options .options-label {
   border: none;
   border-radius: 0.25rem;
-  padding: 0.5rem;
+  padding: 0.4rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -182,20 +182,23 @@ header {
   background-color: var(--light-blue);
 }
 
-#options .options-label-select {
+#options .options-label.select {
   border: none;
   border-radius: 0.25rem;
-  padding: 0.5rem;
+  padding: 0.4rem;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  background-color: --light-blue;
+  background-color: var(--light-blue);
   color: white;
   transition: 300ms;
 }
 
 #options .options-label label {
+  display: flex;
+  justify-content: center;
+  width: 100%;
   cursor: pointer;
 }
 
@@ -348,9 +351,5 @@ footer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
-  }
-
-  #options {
-    width: 250px;
   }
 }

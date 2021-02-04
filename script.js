@@ -71,12 +71,37 @@ const Transaction = {
     }
 }
 
-const DOM = {
+const Options = {
     optionsContainer: {
-        all: document.querySelector("#selectAll"),
-        income: document.querySelector("#selectIncomes"),
-        expense: document.querySelector("#selectExpenses")
+        all: document.querySelector("#label-1"),
+        income: document.querySelector("#label-2"),
+        expense: document.querySelector("#label-3")
     },
+    getValue() {
+        return {
+            all: Options.optionsContainer.all.value,
+            income: Options.optionsContainer.income.value,
+            expense: Options.optionsContainer.expense.value
+        }
+    },
+    selectAll() {
+        Options.optionsContainer.all.classList.add("select")
+        Options.optionsContainer.income.classList.remove("select")
+        Options.optionsContainer.expense.classList.remove("select")
+    },
+    selectIncomes() {
+        Options.optionsContainer.income.classList.add("select")
+        Options.optionsContainer.all.classList.remove("select")
+        Options.optionsContainer.expense.classList.remove("select")
+    },
+    selectExpenses() {
+        Options.optionsContainer.expense.classList.add("select")
+        Options.optionsContainer.all.classList.remove("select")
+        Options.optionsContainer.income.classList.remove("select")
+    }
+}
+
+const DOM = {
     transactionsContainer: document.querySelector("#data-table tbody"),
     addTransactions(transaction, index) {
         const tr = document.createElement('tr')
@@ -112,6 +137,7 @@ const DOM = {
     optionAll() {
         DOM.clearTransactions()
         Transaction.all.forEach((transaction, index) => DOM.addTransactions(transaction, index))
+        Options.selectAll()
     },
     optionIncome() {
         DOM.clearTransactions()
@@ -120,6 +146,7 @@ const DOM = {
                 DOM.addTransactions(transaction, index)
             }
         })
+        Options.selectIncomes()
     },
     optionExpense() {
         DOM.clearTransactions()
@@ -128,12 +155,7 @@ const DOM = {
                 DOM.addTransactions(transaction, index)
             }
         })
-    },
-    optionSelected(event) {
-        if(DOM.optionsContainer.all.value === event.target.value) {
-            DOM.optionsContainer.all.classList.remove(".options-label")
-            DOM.optionsContainer.all.classList.add(".options-label-select")
-        }
+        Options.selectExpenses()
     }
 }
 
