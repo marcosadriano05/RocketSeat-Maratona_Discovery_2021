@@ -112,6 +112,9 @@ const Table = {
             Table.isChecked.splice(index, 1)
         }
         console.log(Table.isChecked)
+    },
+    reloadEvents(){
+        Table.isChecked = []
     }
 }
 
@@ -129,8 +132,10 @@ const DOM = {
         const amount = Utils.formatCurrency(transaction.amount)
         const html = `
             <td>
-                <label for="index_${index}" class="sr-only">Selecionar transação ${transaction.description}</label>
-                <input type="checkbox" id="index_${index}" onchange="Table.captureTransactionEvent(event)" />
+                <div class="table-input">
+                    <label for="index_${index}" class="sr-only">Selecionar transação ${transaction.description}</label>
+                    <input type="checkbox" id="index_${index}" onchange="Table.captureTransactionEvent(event)" />
+                </div>
             </td>
             <td class="description">${transaction.description}</td>
             <td class="${CSSClass}">${amount}</td>
@@ -261,6 +266,7 @@ const RemoveForm = {
         event.preventDefault()
         Transaction.remove(RemoveForm.transaction.index)
         Modal.close(".modal-overlay-remove")
+        Table.reloadEvents()
     }
 }
 
