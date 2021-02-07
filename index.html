@@ -41,11 +41,11 @@
           <p id="totalBalance">R$0,00</p>
         </div>
       </section>
-      <section id="transaction">
+      <section id="options-section">
         <h2 class="sr-only">Transações</h2>
         <a href="#" onclick="Modal.open('.modal-overlay')" class="button new">+ Nova Transação</a>
         <div id="options">
-          <div id="label-1" class="options-label">
+          <div id="label-1" class="options-label select">
             <input id="selectAll" name="selectOption" type="radio" value="all" onchange="DOM.optionAll()" checked="checked" />
             <label for="selectAll">Todas</label>
           </div>
@@ -58,9 +58,12 @@
             <label for="selectExpenses">Saídas</label>
           </div>
         </div>
+      </section>
+      <section id="transaction">
         <table id="data-table">
           <thead>
             <tr>
+              <th></th>
               <th>Descrição</th>
               <th>Valor</th>
               <th>Data</th>

@@ -102,6 +102,22 @@ const Options = {
     }
 }
 
+const Table = {
+    isChecked: [],
+    captureTransactionEvent(event) {
+        if(event.target.checked) {
+            Table.isChecked.push(event.target.id)
+        } else {
+            const index = Table.isChecked.indexOf(event.target.id)
+            Table.isChecked.splice(index, 1)
+        }
+        console.log(Table.isChecked)
+    },
+    reloadEvents(){
+        Table.isChecked = []
+    }
+}
+
 const DOM = {
     transactionsContainer: document.querySelector("#data-table tbody"),
     addTransactions(transaction, index) {
@@ -115,6 +131,12 @@ const DOM = {
         const CSSClass = transaction.amount > 0 ? "income" : "expense"
         const amount = Utils.formatCurrency(transaction.amount)
         const html = `
+            <td>
+                <div class="table-input">
+                    <label for="index_${index}" class="sr-only">Selecionar transação ${transaction.description}</label>
+                    <input type="checkbox" id="index_${index}" onchange="Table.captureTransactionEvent(event)" />
+                </div>
+            </td>
             <td class="description">${transaction.description}</td>
             <td class="${CSSClass}">${amount}</td>
             <td class="date">${transaction.date}</td>
@@ -244,6 +266,7 @@ const RemoveForm = {
         event.preventDefault()
         Transaction.remove(RemoveForm.transaction.index)
         Modal.close(".modal-overlay-remove")
+        Table.reloadEvents()
     }
 }
 
