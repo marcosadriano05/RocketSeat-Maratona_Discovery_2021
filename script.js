@@ -257,18 +257,27 @@ const Form = {
 
 const RemoveForm = {
     transaction: {
-        description: "",
-        index: 0
+        index: 0,
+        validateOneTransaction: false
     },
     setTransaction(description, index) {
-        RemoveForm.transaction.description = description
+        RemoveForm.validateOneTransaction = true
         RemoveForm.transaction.index = index
         document.querySelector("#form-remove h2")
         .innerHTML = `Deseja apagar a transação: ${description}?`
     },
+    setMultipleTransactions() {
+        document.querySelector("#form-remove h2")
+        .innerHTML = "Deseja remover as transações selecionadas?"
+    },
     submit(event) {
         event.preventDefault()
-        Transaction.remove(RemoveForm.transaction.index)
+        if(RemoveForm.validateOneTransaction) {
+            Transaction.remove(RemoveForm.transaction.index)
+            RemoveForm.validateOneTransaction = false
+        } else {
+            Table.deleteSelectedTransactions()
+        }
         Modal.close(".modal-overlay-remove")
         Table.reloadEvents()
     }

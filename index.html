@@ -60,7 +60,7 @@
             </div>
           </div>
           <div id="deleteTransaction" class="icons">
-            <img onclick="Table.deleteSelectedTransactions()" src="./assets/trash-alt-regular.svg" alt="Excluir transações selecionadas" />
+            <img onclick="Modal.open('.modal-overlay-remove'), RemoveForm.setMultipleTransactions()" src="./assets/trash-alt-regular.svg" alt="Excluir transações selecionadas" />
           </div>
         </div>
       </section>
