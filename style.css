@@ -158,6 +158,10 @@ header {
   color: white;
 }
 
+.card.total.negative {
+  background-color: var(--red);
+}
+
 /* Section options =============================== */
 #options-container {
   width: 100%;

@@ -154,6 +154,11 @@ const DOM = {
         const incomes = Transaction.incomes()
         const expenses = Transaction.expenses()
         const total = Transaction.total()
+        if(total<0) {
+            document.querySelector(".card.total").classList.add("negative")
+        } else {
+            document.querySelector(".card.total").classList.remove("negative")
+        }
         document.getElementById("incomeBalance").innerHTML = Utils.formatCurrency(incomes)
         document.getElementById("expenseBalance").innerHTML = Utils.formatCurrency(expenses)
         document.getElementById("totalBalance").innerHTML = Utils.formatCurrency(total)
