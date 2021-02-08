@@ -115,6 +115,10 @@ const Table = {
     },
     reloadEvents(){
         Table.isChecked = []
+    },
+    deleteSelectedTransactions() {
+        Table.isChecked.forEach(index => Transaction.remove(index))
+        Table.reloadEvents()
     }
 }
 
@@ -141,7 +145,7 @@ const DOM = {
             <td class="${CSSClass}">${amount}</td>
             <td class="date">${transaction.date}</td>
             <td>
-            <img onclick="Modal.open('.modal-overlay-remove'), RemoveForm.setTransaction('${description}',${index})" src="./assets/minus.svg" alt="Remover transação">
+                <img onclick="Modal.open('.modal-overlay-remove'), RemoveForm.setTransaction('${description}',${index})" src="./assets/minus.svg" alt="Remover transação">
             </td>
         `
         return html
