@@ -44,18 +44,23 @@
       <section id="options-section">
         <h2 class="sr-only">Transações</h2>
         <a href="#" onclick="Modal.open('.modal-overlay')" class="button new">+ Nova Transação</a>
-        <div id="options">
-          <div id="label-1" class="options-label select">
-            <input id="selectAll" name="selectOption" type="radio" value="all" onchange="DOM.optionAll()" checked="checked" />
-            <label for="selectAll">Todas</label>
+        <div id="options-container">
+          <div id="options">
+            <div id="label-1" class="options-label select">
+              <input id="selectAll" name="selectOption" type="radio" value="all" onchange="DOM.optionAll()" checked="checked" />
+              <label for="selectAll">Todas</label>
+            </div>
+            <div id="label-2" class="options-label">
+              <input id="selectIncomes" name="selectOption" type="radio" value="income" onchange="DOM.optionIncome()" />
+              <label for="selectIncomes">Entradas</label>
+            </div>
+            <div id="label-3" class="options-label">
+              <input id="selectExpenses" name="selectOption" type="radio" value="expense" onchange="DOM.optionExpense()" />
+              <label for="selectExpenses">Saídas</label>
+            </div>
           </div>
-          <div id="label-2" class="options-label">
-            <input id="selectIncomes" name="selectOption" type="radio" value="income" onchange="DOM.optionIncome()" />
-            <label for="selectIncomes">Entradas</label>
-          </div>
-          <div id="label-3" class="options-label">
-            <input id="selectExpenses" name="selectOption" type="radio" value="expense" onchange="DOM.optionExpense()" />
-            <label for="selectExpenses">Saídas</label>
+          <div id="deleteTransaction" class="icons">
+            <img onclick="Modal.open('.modal-overlay-remove'), RemoveForm.setMultipleTransactions()" src="./assets/trash-alt-regular.svg" alt="Excluir transações selecionadas" />
           </div>
         </div>
       </section>
