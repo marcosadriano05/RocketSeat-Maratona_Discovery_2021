@@ -107,11 +107,12 @@ const Table = {
     captureTransactionEvent(event) {
         if(event.target.checked) {
             Table.isChecked.push(event.target.id)
+            document.querySelector(`.table-input label.label-${event.target.id}`).classList.add("label-selected")
         } else {
             const index = Table.isChecked.indexOf(event.target.id)
             Table.isChecked.splice(index, 1)
+            document.querySelector(`.table-input label.label-${event.target.id}`).classList.remove("label-selected")
         }
-        console.log(Table.isChecked)
     },
     reloadEvents(){
         Table.isChecked = []
@@ -137,7 +138,7 @@ const DOM = {
         const html = `
             <td>
                 <div class="table-input">
-                    <label for="index_${index}" class="sr-only">Selecionar transação ${transaction.description}</label>
+                    <label for="index_${index}" class="label-index_${index}">Selecionar transação ${transaction.description}</label>
                     <input type="checkbox" id="index_${index}" onchange="Table.captureTransactionEvent(event)" />
                 </div>
             </td>
