@@ -1,13 +1,11 @@
 const Modal = {
     open(value){
-        //Abrir modal adicionando a classe active ao modal
         document
         .querySelector(value)
         .classList
         .add("active")
     },
     close(value){
-        //Fechar modal removendo a classe active do modal
         document
         .querySelector(value)
         .classList
@@ -27,20 +25,6 @@ const Storage = {
 
 const Transaction = {
     all: Storage.get(),
-    /*
-    all: [
-        {
-            description: "Luz",
-            amount: -5000,
-            date: "21/02/2021"
-        },
-        {
-            description: "App",
-            amount: 500000,
-            date: "21/02/2021"
-        }
-    ],
-    */
     add(transaction) {
         Transaction.all.push(transaction)
         App.reload()
