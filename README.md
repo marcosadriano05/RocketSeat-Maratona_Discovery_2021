@@ -1,6 +1,8 @@
 # dev.finance$ - Aplicação para cálculo de transações
 ## Description
-Aplicação para cálculo envolvendo transações financeiras do usuário. Nele é possível se ter noção da quantidade de dinheiro que está na conta e o total de despesas, com isso o usuário sabe quanto tem de saldo na conta ou déficit. 
+Aplicação para cálculo envolvendo transações financeiras do usuário. Nele é possível se ter noção da quantidade de dinheiro que está na conta e o total de despesas, com isso o usuário sabe quanto tem de saldo na conta ou déficit.
+
+Link para o projeto: [dev.finance$](https://marcosadriano05.github.io/devfinances)
 
 ## Getting Started
 Para utilizar o projeto, basta clonar o repositório em um diretório de sua preferência com o seguinte comando:
